@@ -1,0 +1,8 @@
+.app {
+    display: grid;
+    grid-template-columns: minmax(200px, 300px) minmax(720px, auto) minmax(200px, 300px);
+    width: 100%;
+    height: 100vh;
+    padding-top: 56px;
+    background-color: #fff;
+}

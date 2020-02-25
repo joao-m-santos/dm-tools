@@ -1,0 +1,44 @@
+:root {
+    /* Sidenav */
+    --sidenav-background: #fff;
+}
+
+.sidenav {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--gray-1);
+
+    .sidenav__new {
+        margin: 16px 0;
+        padding: 0 16px;
+    }
+
+    .sidenav__nav {
+        margin: 8px 0;
+        padding: 0 16px;
+        list-style: none;
+
+        > li {
+            margin-bottom: 4px;
+
+            > a {
+                display: block;
+                padding: 8px;
+                border-radius: 4px;
+                transition: all 0.1s ease-in-out;
+
+                &:hover {
+                    background-color: var(--gray-1);
+                }
+            }
+        }
+    }
+
+    .sidenav__author {
+        margin-top: auto;
+        padding: 8px;
+        font-size: var(--font-size--small);
+        text-align: right;
+        color: var(--gray-4);
+    }
+}

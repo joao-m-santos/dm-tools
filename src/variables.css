@@ -1,0 +1,40 @@
+:root {
+    /* Colors */
+    --white: #fff;
+
+    --gray-1: #eee;
+    --gray-2: #ccc;
+    --gray-3: #aaa;
+    --gray-4: #888;
+    --gray-5: #666;
+    --gray-6: #444;
+    --gray-7: #222;
+
+    --blue-1: #d1f7ff;
+    --blue-2: #46c3db;
+    --blue-3: #00d5ff;
+    --blue-4: #1e7aa5;
+
+    /* Fonts */
+    --font-body: "Roboto Mono", monospace, sans-serif;
+    --font-heading: "Montserrat", sans-serif;
+
+    --font-size--normal: 14px;
+    --font-size--big: 16px;
+    --font-size--bigger: 18px;
+    --font-size--biggest: 20px;
+    --font-size--small: 12px;
+    --font-size--smallest: 10px;
+
+    /* Box Shadow */
+    --shadow-1: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    --shadow-2: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12),
+        0 3px 3px -2px rgba(0, 0, 0, 0.4);
+    --shadow-3: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12),
+        0 2px 4px -1px rgba(0, 0, 0, 0.4);
+    --shadow-4: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12),
+        0 3px 5px -1px rgba(0, 0, 0, 0.4);
+    --shadow-5: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12),
+        0 5px 5px -3px rgba(0, 0, 0, 0.4);
+}

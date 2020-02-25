@@ -1,0 +1,43 @@
+:root {
+    /* Header */
+    --header-background: #fff;
+}
+
+.header {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    padding: 0 16px;
+    background: var(--header-background);
+    border-bottom: 1px solid var(--gray-1);
+
+    h1 {
+        margin: 0;
+        font-family: var(--font-heading);
+        font-size: var(--font-size--biggest);
+        font-weight: 900;
+    }
+
+    .header__nav {
+        height: 100%;
+        margin-left: auto;
+
+        .header__ul {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            > li > a {
+                display: flex;
+                align-items: center;
+                height: 56px;
+                padding: 0 16px;
+            }
+        }
+    }
+}
