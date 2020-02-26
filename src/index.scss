@@ -27,19 +27,28 @@ h4 {
 }
 
 h1 {
-    font-size: var(--font-size-biggest);
+    font-size: var(--font-size--biggest);
 }
 
 h2 {
-    font-size: var(--font-size-bigger);
+    font-size: var(--font-size--bigger);
 }
 
 h3 {
-    font-size: var(--font-size-big);
+    font-size: var(--font-size--big);
 }
 
 h4 {
-    font-size: var(--font-size-normal);
+    margin: 0 0 8px 0;
+    font-size: var(--font-size--normal);
+}
+
+h5 {
+    font-size: var(--font-size--small);
+}
+
+p {
+    margin: 0 0 16px 0;
 }
 
 a.no-style,
@@ -59,6 +68,8 @@ a.no-style:visited {
     font-weight: 700;
     text-transform: uppercase;
 
+    background-color: transparent;
+
     border: none;
     border-radius: 4px;
 
@@ -76,4 +87,8 @@ a.no-style:visited {
         color: var(--white);
         background-color: var(--gray-4);
     }
+}
+
+.font-size--small {
+    font-size: var(--font-size--small);
 }

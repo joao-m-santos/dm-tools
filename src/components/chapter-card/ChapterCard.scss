@@ -1,0 +1,36 @@
+.chapters__card {
+    background-color: var(--white);
+    border-radius: 4px;
+    box-shadow: var(--shadow-1);
+
+    .card__header {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid var(--gray-1);
+
+        > span {
+            flex-shrink: 0;
+            padding: 16px;
+            margin-right: 16px;
+            font-family: var(--font-heading);
+            font-weight: 900;
+            border-right: 1px solid var(--gray-1);
+            transition: all 0.1s ease-in-out;
+            cursor: grab;
+
+            &:hover {
+                background-color: var(--gray-1);
+            }
+        }
+
+        > strong {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .card__body {
+        padding: 16px;
+    }
+}

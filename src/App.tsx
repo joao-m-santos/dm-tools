@@ -1,18 +1,18 @@
 import React from "react";
 import "./App.scss";
-import Header from "./components/header/Header";
+import HeaderContainer from "./components/header/HeaderContainer";
 import SideNav from "./components/sidenav/SideNav";
-import Main from "./components/main/Main";
+import MainContainer from "./components/main/MainContainer";
 import Notes from "./components/notes/Notes";
 
 const App = () => {
     return (
         <>
-            <Header />
+            <HeaderContainer />
 
             <div className="app">
                 <SideNav />
-                <Main />
+                <MainContainer />
                 <Notes />
             </div>
         </>
