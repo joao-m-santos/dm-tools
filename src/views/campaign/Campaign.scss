@@ -2,6 +2,12 @@
     border: 1px solid var(--gray-1);
     border-radius: 4px;
 
+    &.campaign--new {
+        .form {
+            padding: 16px;
+        }
+    }
+
     .campaign__header {
         display: flex;
         flex-wrap: nowrap;
@@ -18,8 +24,18 @@
         }
     }
 
-    .campaign__chapters {
+    .campaign__container {
         padding: 16px;
+
+        .container__header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+
+            .container__button {
+                margin-left: auto;
+            }
+        }
 
         .chapters__list {
             display: grid;

@@ -4,10 +4,23 @@ export interface Chapter {
     description?: string;
 }
 
-export interface Campaign {
+export interface Encounter {
+    _id: string;
     name: string;
-    active: boolean;
+}
+
+export interface PC {
+    _id: string;
+    name: string;
+}
+
+export interface Campaign {
+    _id?: string;
+    name: string;
+    status: string;
     chapters: Array<Chapter>;
+    encounters: Array<Encounter>;
+    pcs: Array<PC>;
 }
 
 export interface CampaignState {
@@ -21,7 +34,7 @@ export const NEW_CAMPAIGN = "NEW_CAMPAIGN";
 
 interface CampaignAction {
     type: typeof SET_CAMPAIGNS | typeof SET_CURRENT | typeof NEW_CAMPAIGN;
-    payload: Array<Campaign> | Campaign;
+    payload: Array<Campaign> | Campaign | null;
 }
 
 export type CampaignActionTypes = CampaignAction;

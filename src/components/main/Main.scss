@@ -6,4 +6,57 @@
         margin-top: 64px;
         text-align: center;
     }
+
+    .main__select-campaign {
+        .select-campaign__container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
+
+            .select-campaign {
+                border: 1px solid var(--gray-1);
+                border-radius: 4px;
+                transition: all 0.1s ease-in-out;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: var(--gray-1);
+                }
+
+                .select-campaign__header {
+                    display: flex;
+                    align-items: center;
+                    padding: 16px;
+                    border-bottom: 1px solid var(--gray-1);
+
+                    h4 {
+                        margin-bottom: 0;
+                        margin-right: 8px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+
+                    .label {
+                        margin-left: auto;
+                    }
+                }
+
+                .select-campaign__body {
+                    display: grid;
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                    gap: 8px;
+                    padding: 16px 8px;
+
+                    .select-campaign__info {
+                        text-align: center;
+
+                        h5 {
+                            margin: 0 0 4px 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

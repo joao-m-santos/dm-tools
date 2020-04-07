@@ -50,11 +50,19 @@
                 padding: 0;
                 list-style: none;
 
+                > li > button,
                 > li > a {
                     display: flex;
                     align-items: center;
                     height: 56px;
                     padding: 0 16px;
+                }
+
+                .header__username {
+                    display: inline-flex;
+                    align-items: center;
+                    height: 100%;
+                    margin-right: 16px;
                 }
             }
         }

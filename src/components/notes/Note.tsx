@@ -9,7 +9,7 @@ const Note = () => {
     const textareaRef: React.RefObject<HTMLTextAreaElement> = useRef<HTMLTextAreaElement>(null);
 
     useEffect(() => {
-        generatePlaceholder().then((placeholder: string) => setPlaceholder(placeholder));
+        generatePlaceholder("notes").then((placeholder: string) => setPlaceholder(placeholder));
     }, []);
 
     useEffect(() => {

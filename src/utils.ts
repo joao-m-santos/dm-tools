@@ -1,13 +1,19 @@
-export const setLoader = (state: boolean) =>
-    document.dispatchEvent(new CustomEvent("loader-" + state ? "on" : "off"));
+import axios from "axios";
 
-export const generatePlaceholder = () => {
-    console.log("Generating...");
+export function setAuthToken(token: string | null | undefined): void {
+    if (token) {
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    } else {
+        delete axios.defaults.headers.common["Authorization"];
+    }
+}
+
+export const setLoader = (state: boolean) => document.dispatchEvent(new CustomEvent("loader-" + state ? "on" : "off"));
+
+export const generatePlaceholder = (from: string) => {
     return fetch("/assets/placeholders.json")
         .then(list => list.json())
-        .then(
-            json => json.placeholders[Math.floor(Math.random() * (json.placeholders.length - 1))]
-        );
+        .then(json => json[from][Math.floor(Math.random() * (json[from].length - 1))]);
 };
 
 export const arrayMoveMutate = (array: Array<any>, from: number, to: number) => {

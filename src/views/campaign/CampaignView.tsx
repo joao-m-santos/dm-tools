@@ -1,21 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SortableContainer } from "react-sortable-hoc";
 import "./Campaign.scss";
 import { Campaign, Chapter } from "../../store/campaigns/types";
 import ChapterCard from "../../components/chapter-card/ChapterCard";
 import { arrayMove } from "../../utils";
 
-interface CampaignProps extends Campaign {}
-
-// const SortableList = SortableContainer(({ items }) => {
-//     return (
-//         <div className="chapters__list">
-//             {items.map((chapter: Chapter) => (
-//                 <ChapterCard key={chapter.index} {...chapter} />
-//             ))}
-//         </div>
-//     );
-// });
+interface CampaignProps extends Campaign {
+    setCurrent: (campaign: Campaign) => void;
+}
 
 const SortableList = SortableContainer(({ children }: { children: any }) => {
     return <div className="chapters__list">{children}</div>;
@@ -24,11 +16,13 @@ const SortableList = SortableContainer(({ children }: { children: any }) => {
 const CampaignView: React.FC<CampaignProps> = (props: CampaignProps) => {
     const [chapterList, setChapterList] = useState<Array<Chapter>>(props.chapters);
 
+    useEffect(() => {
+        props.setCurrent(props);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     const onSortEnd = ({ oldIndex, newIndex }: { oldIndex: number; newIndex: number }) => {
         setChapterList(arrayMove(chapterList, oldIndex, newIndex));
-        setTimeout(() => {
-            console.log(chapterList);
-        }, 250);
     };
 
     return (
@@ -45,13 +39,22 @@ const CampaignView: React.FC<CampaignProps> = (props: CampaignProps) => {
                 </div>
             </div>
 
-            <div className="campaign__chapters">
-                <h4>Chapters</h4>
+            <div className="campaign__container">
+                <div className="container__header">
+                    <h4>Chapters</h4>
+                    <button
+                        type="button"
+                        className="button button--primary container__button"
+                        onClick={() => {
+                            fetch("http://localhost:3001/").then(res => console.log(res));
+                        }}
+                    >
+                        + NEW CHAPTER
+                    </button>
+                </div>
                 <SortableList onSortEnd={onSortEnd} useDragHandle axis="xy">
                     {chapterList.map((chapter: Chapter) => {
-                        return (
-                            <ChapterCard key={chapter._index} index={chapter._index} {...chapter} />
-                        );
+                        return <ChapterCard key={chapter._index} index={chapter._index} {...chapter} />;
                     })}
                 </SortableList>
             </div>

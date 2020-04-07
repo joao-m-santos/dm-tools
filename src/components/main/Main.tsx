@@ -1,83 +1,126 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Switch, Route, Redirect, useParams } from "react-router-dom";
 import "./Main.scss";
 import { Campaign } from "../../store/campaigns/types";
-import CampaignView from "../../views/campaign/CampaignView";
+import API from "../../api/api";
+import Loader2 from "../loader2/Loader2";
+import { User } from "../../store/auth/types";
+import LoginView from "../../views/auth/Login/LoginView";
+import SignupView from "../../views/auth/Signup/SignupView";
+import SignupRedirect from "../../views/auth/SignupRedirect";
+import { SelectCampaign, NoCampaigns } from "../../views/campaign/CampaignViews";
+import CampaignContainer from "../../views/campaign/CampaignContainer";
+import NewCampaign from "../../views/campaign/NewCampaign";
 
 interface MainProps {
+    token: string | undefined;
+    user: User | null;
     campaigns: Array<Campaign> | null;
     current: Campaign | null;
     setCampaigns: (campaigns: Array<Campaign>) => void;
-    setCurrent: (campaign: Campaign) => void;
     newCampaign: (campaign: Campaign) => void;
 }
 
 const Main: React.FC<MainProps> = (props: MainProps) => {
-    const [mainState, setMainState] = useState<string>("loading");
+    const [loader, setLoader] = useState<boolean>(false);
 
     useEffect(() => {
-        setTimeout(() => {
-            const data = [
-                {
-                    name: "A Star Wars adventure",
-                    active: true,
-                    chapters: [
-                        { _index: 0, name: "Chapter 1" },
-                        { _index: 1, name: "Chapter 2" },
-                        { _index: 2, name: "Chapter 3" },
-                        { _index: 3, name: "Chapter 4" },
-                        { _index: 4, name: "Chapter 5" }
-                    ]
-                },
-                { name: "The Metal", active: false, chapters: [] }
-            ];
-            props.setCampaigns(data);
-            const current = data.find(c => c.active);
-            current && props.setCurrent(current);
-        }, 1500);
-    }, []);
-
-    useEffect(() => {
-        setMainState(props.campaigns ? (props.campaigns.length ? "campaign" : "new") : "loading");
-    }, [props]);
-
-    const handleNewButtonClick = () => {};
+        if (props.user) {
+            setLoader(true);
+            API.campaigns.get().then(data => {
+                props.setCampaigns(data);
+                setLoader(false);
+            });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.user]);
 
     const _renderContent = (): JSX.Element => {
-        switch (mainState) {
-            case "loading":
-                return <div>Loading...</div>;
-            case "new":
-                return (
-                    <div className="main__new-campaign">
-                        <p>To begin using DM Tools, please start by creating a new Campaign:</p>
-                        <button
-                            type="button"
-                            className="button button--primary"
-                            onClick={handleNewButtonClick}
-                        >
-                            + NEW CAMPAIGN
-                        </button>
-                    </div>
-                );
-            case "campaign":
-                return props.current ? (
-                    <div className="main__campaign">
-                        <CampaignView {...props.current} />
-                    </div>
-                ) : (
-                    <div className="main__select-campaign">Select a Campaign:</div>
-                );
+        if (!props.token) {
+            return (
+                <Switch>
+                    <Route exact path="/(|login)" component={LoginView} />
 
-            default:
-                return <div>Error rendering content</div>;
+                    <Route path="/signup" component={SignupView} />
+
+                    <Route exact path="/signup-redirect" component={SignupRedirect} />
+
+                    <Route>
+                        <Redirect to="/login" />
+                    </Route>
+                </Switch>
+            );
+        } else {
+            if (props.campaigns) {
+                return (
+                    <Switch>
+                        <Route exact path="/new-campaign">
+                            <NewCampaign />
+                        </Route>
+
+                        <Route path={`/campaign/:id`}>
+                            <CampaignRouter campaigns={props.campaigns} />
+                        </Route>
+
+                        <Route path="/campaign">
+                            <Redirect to={`/campaign/${props.current?._id}`} />
+                        </Route>
+
+                        {props.campaigns.length > 0 ? (
+                            <>
+                                <Route exact path="/select-campaign">
+                                    <SelectCampaign campaigns={props.campaigns} />
+                                </Route>
+
+                                <Route exact path="/">
+                                    <Redirect to="/select-campaign" />
+                                </Route>
+
+                                <Route>
+                                    <Redirect to="/select-campaign" />
+                                </Route>
+                            </>
+                        ) : (
+                            <>
+                                <Route exact path="/no-campaigns">
+                                    <NoCampaigns />
+                                </Route>
+                                <Route>
+                                    <Redirect to="/no-campaigns" />
+                                </Route>
+                            </>
+                        )}
+                    </Switch>
+                );
+            } else {
+                return (
+                    <div>
+                        Loading... <Loader2 />
+                    </div>
+                );
+            }
         }
     };
 
     return (
         <>
-            <main className="main">{_renderContent()}</main>
+            <main className="main">
+                {loader ? (
+                    <div>
+                        Loading... <Loader2 />
+                    </div>
+                ) : (
+                    _renderContent()
+                )}
+            </main>
         </>
     );
 };
 
 export default Main;
+
+export const CampaignRouter = (props: { campaigns: Array<Campaign> | null }) => {
+    let { id } = useParams();
+    const campaign = props.campaigns?.find((c: Campaign) => c._id === id);
+    return campaign ? <CampaignContainer {...campaign} /> : <div>Error rendering content</div>;
+};

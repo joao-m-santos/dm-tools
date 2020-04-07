@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./SideNav.scss";
 
 const SideNav = () => {
@@ -12,27 +13,27 @@ const SideNav = () => {
 
             <ul className="sidenav__nav">
                 <li>
-                    <a href="/chapters" className="no-style">
+                    <Link to="/chapters" className="no-style">
                         Chapters
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="/encounters" className="no-style">
+                    <Link to="/encounters" className="no-style">
                         Encounters
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="/scripts" className="no-style">
+                    <Link to="/scripts" className="no-style">
                         Scripts
-                    </a>
+                    </Link>
                 </li>
             </ul>
 
             <div className="sidenav__author">
                 Made with <span style={{ color: "#e25555" }}>&#9829;</span> by{" "}
-                <a href="https://joao-m-santos.github.io/" className="no-style">
+                <Link to="https://joao-m-santos.github.io/" className="no-style">
                     <strong>JOAO</strong>
-                </a>{" "}
+                </Link>{" "}
                 &bull; 2020
             </div>
         </div>

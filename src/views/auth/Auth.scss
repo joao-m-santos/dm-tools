@@ -1,0 +1,12 @@
+.auth__wrapper {
+    display: flex;
+    justify-content: center;
+
+    > .form {
+        width: 384px;
+
+        > h3 {
+            margin-top: 0;
+        }
+    }
+}

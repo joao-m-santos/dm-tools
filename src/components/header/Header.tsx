@@ -1,22 +1,22 @@
 import React from "react";
-import "./Header.scss";
+import { Link } from "react-router-dom";
 import { Campaign } from "../../store/campaigns/types";
+import { User } from "../../store/auth/types";
+import "./Header.scss";
 
 interface HeaderProps {
-    campaigns: Array<Campaign> | null;
+    user: User | null;
     current: Campaign | null;
-    setCampaigns: (campaigns: Array<Campaign>) => void;
-    setCurrent: (campaign: Campaign) => void;
-    newCampaign: (campaign: Campaign) => void;
+    logout: () => void;
 }
 
 const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
     return (
         <header className="header">
             <div className="header__logo">
-                <a href="/" className="no-style">
+                <Link to="/" className="no-style">
                     <h1>DM Tools</h1>
-                </a>
+                </Link>
             </div>
             <div className="header__content">
                 <div className="header__campaign">
@@ -24,16 +24,31 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
                 </div>
                 <nav className="header__nav">
                     <ul className="header__ul">
-                        <li>
-                            <a href="/login" className="no-style button">
-                                Log in
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/signup" className="no-style button">
-                                Sign up
-                            </a>
-                        </li>
+                        {!props.user ? (
+                            <>
+                                <li>
+                                    <Link to="/login" className="no-style button">
+                                        Log in
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/signup" className="no-style button">
+                                        Sign up
+                                    </Link>
+                                </li>
+                            </>
+                        ) : (
+                            <>
+                                <li>
+                                    <span className="header__username">{props.user.name}</span>
+                                </li>
+                                <li>
+                                    <button className="no-style button" onClick={() => props.logout()}>
+                                        Log out
+                                    </button>
+                                </li>
+                            </>
+                        )}
                     </ul>
                 </nav>
             </div>

@@ -1,1 +1,29 @@
-{ "placeholders": ["Make rocks fall...", "Add dragon to dungeon...", "Goblins or no goblins?...", "Solve my own puzzle..."] }
+{
+    "usernames": [
+        "xXx_Skull_Assassin_xXx",
+        "Legolas",
+        "EvilMaster",
+        "Zaphyel",
+        "Loki Thor",
+        "WillMen",
+        "SpaceMarine839",
+        "pink omega",
+        "BlueCharizard"
+    ],
+    "campaigns": [
+        "Bulgrud's Dungeon",
+        "Stars and Nebulas",
+        "Knights of Sydney",
+        "Avenging Mr. Robbins",
+        "Mystery of the Lost Souls",
+        "Free the Mice"
+    ],
+    "notes": [
+        "Make rocks fall...",
+        "Add dragon to dungeon...",
+        "Goblins or no goblins?...",
+        "Solve my own puzzle...",
+        "PCs are tired of Kobolds...",
+        "Figure out the princess' name..."
+    ]
+}

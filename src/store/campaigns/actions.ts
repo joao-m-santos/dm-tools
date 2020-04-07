@@ -7,7 +7,7 @@ export const setCampaigns = (campaigns: Array<Campaign>): CampaignActionTypes =>
     };
 };
 
-export const setCurrent = (campaign: Campaign): CampaignActionTypes => {
+export const setCurrent = (campaign: Campaign | null): CampaignActionTypes => {
     return {
         type: SET_CURRENT,
         payload: campaign
